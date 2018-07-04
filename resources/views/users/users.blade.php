@@ -12,6 +12,9 @@
             <div>
                 <p>{!! link_to_route('users.show', 'View profile', ['id' => $user->id]) !!}</p>
             </div>
+            <div class="col-xs-2">
+                @include('user_friend.friend_button', ['user' => $user])
+            </div>
         </div>
     </li>
 @endforeach

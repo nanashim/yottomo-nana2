@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/', 'MemosController@index');
+
 // user registration
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
 Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
@@ -26,5 +28,12 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
+    Route::group(['prefix' => 'users/{id}'], function () {
+        Route::post('friend', 'UserFriendController@store')->name('user.friend');
+        Route::delete('unfriend', 'UserFriendController@destroy')->name('user.unfriend');
+        Route::get('friends', 'UsersController@friends')->name('users.friends');
+    });
+    
+    Route::resource('memos', 'MemosController', ['only' => ['store', 'destroy']]);
 });
 
