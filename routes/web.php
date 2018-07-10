@@ -27,7 +27,10 @@ Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
+    Route::resource('users', 'UsersController', ['only' => ['index', 'show','edit']]);
+    
+    Route::resource('profiles', 'ProfilesController');
+    
     Route::group(['prefix' => 'users/{id}'], function () {
         Route::post('friend', 'UserFriendController@store')->name('user.friend');
         Route::delete('unfriend', 'UserFriendController@destroy')->name('user.unfriend');

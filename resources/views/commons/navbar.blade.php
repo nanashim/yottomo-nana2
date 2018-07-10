@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">おいでよ！ヨッ友の林</a>
+                <a class="navbar-brand" href="/"><span style="font : normal 900 20pt 'Monotype Corsiva'">Yottomo-Tinder</span></a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">

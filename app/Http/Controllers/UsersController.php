@@ -33,6 +33,23 @@ class UsersController extends Controller
         return view('users.show', $data);
     }
     
+    public function edit($id)
+    {
+        $user = User::find($id);
+        // $memos = $user->memos()->orderBy('created_at', 'desc')->paginate(10);
+        
+        $data = [
+            'user' => $user,
+        //     'memos' => $memos,
+        ];
+        
+        $data += $this->counts($user);
+        
+        return view('users.edit', $data);
+        
+        
+    }
+    
     public function friends($id)
     {
         $user = User::find($id);

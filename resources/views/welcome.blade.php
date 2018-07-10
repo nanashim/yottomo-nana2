@@ -7,7 +7,7 @@
     @else
         <div class="center jumbotron">
             <div class="text-center">
-                <h1>おいでよ！ヨッ友の林</h1>
+                <span style="font : normal 900 80pt 'Monotype Corsiva'">Welcome to Yottomo-Tinder</span><br>
                 {!! link_to_route('signup.get', 'Sign up now!', null, ['class' => 'btn btn-lg btn-primary']) !!}
             </div>
         </div>
