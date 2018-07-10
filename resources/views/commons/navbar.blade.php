@@ -15,16 +15,21 @@
                     @if (Auth::check())
                         <li>{!! link_to_route('users.index', 'Users') !!}</li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span class="gravatar">
+                                    <img src="{{ Gravatar::src(Auth::user()->name, 20) . '&d=mm' }}" alt="" class="img-circle">
+                                </span>
+                                {{ Auth::user()->name }} 
+                                <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li>{!! link_to_route('users.show', 'My profile', ['id' => Auth::id()]) !!}</li>
+                                <li>{!! link_to_route('users.show', ' MyProfile', ['id' => Auth::id()], ['class' => 'glyphicon glyphicon-user']) !!}</li>
                                 <li role="separator" class="divider"></li>
-                                <li>{!! link_to_route('logout.get', 'Logout') !!}</li>
+                                <li>{!! link_to_route('logout.get', ' Logout', null, ['class' => 'glyphicon glyphicon-log-out']) !!}</li>
                             </ul>
                         </li>
                     @else
-                        <li>{!! link_to_route('signup.get', 'Signup') !!}</li>
-                        <li>{!! link_to_route('login', 'Login') !!}</li>
+                        <li>{!! link_to_route('signup.get', ' Signup', null, ['class' => 'glyphicon glyphicon-home']) !!}</li>
+                        <li>{!! link_to_route('login', ' Login', null, ['class' => 'glyphicon glyphicon-log-in']) !!}</li>
                     @endif
                 </ul>
             </div>
