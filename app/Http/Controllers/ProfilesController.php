@@ -16,7 +16,7 @@ class ProfilesController extends Controller
      */
     public function index()
     {
-        $profiles = Profile::all();
+        $profiles = User::all();
         
         return view('profiles.show',[
             'profiles' => $profiles,
@@ -30,7 +30,7 @@ class ProfilesController extends Controller
      */
     public function create()
     {
-        $profile = new Profile;
+        $profile = new User;
         
         return view('profiles.create',[
             'profile' => $profile,
@@ -57,7 +57,7 @@ class ProfilesController extends Controller
             'app' => 'max:191',
         ]);
         
-        $profile = new Profile;
+        $profile = new User;
         $profile->content = $request->content;
         $profile->birthday = $request->birthday;
         $profile->birthplace = $request->birthplace;
@@ -80,7 +80,7 @@ class ProfilesController extends Controller
      */
     public function show($id)
     {
-        $profile = \App\Profile::find($id);
+        $profile = \App\User::find($id);
         
         return view('users.show',[
             'profile' => $profile,
@@ -95,7 +95,7 @@ class ProfilesController extends Controller
      */
     public function edit($id)
     {
-        $profile = Profile::find($id);
+        $profile = User::find($id);
         
         return view('profiles.edit',[
             'profile' => $profile,
@@ -123,7 +123,7 @@ class ProfilesController extends Controller
             'app' => 'max:191',
         ]);
         
-        $profile = Profile::find($id);
+        $profile = User::find($id);
         $profile->content = $request->content;
         $profile->birthday = $request->birthday;
         $profile->birthplace = $request->birthplace;
@@ -146,7 +146,7 @@ class ProfilesController extends Controller
      */
     public function destroy($id)
     {
-        $profile = Profile::find($id);
+        $profile = User::find($id);
         $profile->delete();
         
         return redirect('/');
