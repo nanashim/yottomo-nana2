@@ -49,7 +49,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'userid' => 'required|string|max:255|unique:users',
+            'hometeam' => 'required|string|max:255',
+            'codingteam' => 'required|string|max:255',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -64,7 +65,8 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'userid' => $data['userid'],
+            'hometeam' => $data['hometeam'],
+            'codingteam' => $data['codingteam'],
             'password' => bcrypt($data['password']),
         ]);
     }

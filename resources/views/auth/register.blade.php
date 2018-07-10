@@ -7,25 +7,30 @@
 
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-
+            
             {!! Form::open(['route' => 'signup.post']) !!}
                 <div class="form-group">
-                    {!! Form::label('name', 'ニックネーム') !!}
+                    {!! Form::label('name', 'Name') !!}
                     {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('userid', 'ユーザーID') !!}
-                    {!! Form::text('userid', old('userid'), ['class' => 'form-control']) !!}
+                    {!! Form::label('hometeam', 'Hometeam') !!}
+                    {!! Form::text('hometeam', old('hometeam'), ['class' => 'form-control']) !!}
+                </div>
+                
+                 <div class="form-group">
+                    {!! Form::label('codingteam', 'Codingteam') !!}
+                    {!! Form::text('codingteam', old('codingteam'), ['class' => 'form-control']) !!}
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('password', 'パスワード') !!}
+                    {!! Form::label('password', 'Password') !!}
                     {!! Form::password('password', ['class' => 'form-control']) !!}
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('password_confirmation', 'パスワード(確認)') !!}
+                    {!! Form::label('password_confirmation', 'Confirmation') !!}
                     {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
                 </div>
 
