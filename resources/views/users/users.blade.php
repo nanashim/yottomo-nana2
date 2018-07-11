@@ -10,6 +10,9 @@
                 {{ $user->name }} ({{ $user->hometeam }},{{ $user->codingteam }})
             </div>
             <div>
+                <p>私の趣味は、[{{ $user->hobby }}]で、チャームポイントは[{{ $user->charmpoint }}]なんだ。</p>
+            </div>
+            <div>
                 <p>{!! link_to_route('users.show', 'View profile', ['id' => $user->id]) !!}</p>
             </div>
             <div>
