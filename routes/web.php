@@ -32,9 +32,17 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('profiles', 'ProfilesController');
     
     Route::group(['prefix' => 'users/{id}'], function () {
-        Route::post('friend', 'UserFriendController@store')->name('user.friend');
-        Route::delete('unfriend', 'UserFriendController@destroy')->name('user.unfriend');
+        // like
+        Route::post('friend', 'UserFriendController@friend')->name('user.friend');
+        Route::delete('unfriend', 'UserFriendController@unfriend')->name('user.unfriend');
         Route::get('friends', 'UsersController@friends')->name('users.friends');
+        
+        // zuttomo
+        Route::post('zuttomo', 'UserFriendController@zuttomo')->name('user.zuttomo');
+        Route::delete('unzuttomo', 'UserFriendController@unzuttomo')->name('user.unzuttomo');
+        Route::get('zuttomoings', 'UsersController@zuttomoings')->name('users.zuttomoings');
+        
+        
     });
     
     Route::resource('memos', 'MemosController', ['only' => ['store', 'destroy']]);

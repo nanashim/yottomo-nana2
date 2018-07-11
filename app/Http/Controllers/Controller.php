@@ -14,10 +14,12 @@ class Controller extends BaseController
     public function counts($user) {
         $count_memos = $user->memos()->count();
         $count_friends = $user->friends()->count();
+        $count_zuttomoings = $user->zuttomoings()->count();
 
         return [
             'count_memos' => $count_memos,
             'count_friends' => $count_friends,
+            'count_zuttomoings' => $count_zuttomoings,
         ];
     }
 }

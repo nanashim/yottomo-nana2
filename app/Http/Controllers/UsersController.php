@@ -64,4 +64,22 @@ class UsersController extends Controller
 
         return view('users.friends', $data);
     }
+    
+    
+    // zuttomo
+    public function zuttomoings($id)
+    {
+        $user = User::find($id);
+        $zuttomoings = $user->zuttomoings()->paginate(10);
+
+        $data = [
+            'user' => $user,
+            'users' => $zuttomoings,
+        ];
+
+        $data += $this->counts($user);
+
+        return view('users.zuttomoings', $data);
+    }
+    
 }

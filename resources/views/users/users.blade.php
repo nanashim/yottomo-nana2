@@ -14,6 +14,7 @@
             </div>
             <div>
                 @include('user_friend.friend_button', ['user' => $user])
+                @include('user_friend.zuttomo_button', ['user' => $user])
             </div>
         </div>
     </li>
