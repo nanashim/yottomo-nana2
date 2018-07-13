@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\DB;
+// use App\Http\Controllers\Controller;
 
 use App\User;
+use App\User_friend;
 use App\Memo;
 
 class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::paginate(10);
+        $users = User::paginate(20);
         
         return view('users.index', [
             'users' => $users,
@@ -81,5 +84,52 @@ class UsersController extends Controller
 
         return view('users.zuttomoings', $data);
     }
+    
+    // future
+    public function futures($id)
+    {
+        $user = User::find($id);
+        $futures = $user->futures()->paginate(10);
+
+        $data = [
+            'user' => $user,
+            'users' => $futures,
+        ];
+
+        $data += $this->counts($user);
+
+        return view('users.futures', $data);
+    }
+    
+    // public function futures($id)
+    // {
+    //     $user = User::find($id);
+    //     $futures = $user->futures()->where('user_id', '=', $id);
+
+    //     $data = [
+    //         'user' => $user,
+    //         'users' => $futures,
+    //     ];
+
+    //     $data += $this->counts($user);
+
+    //     return view('users.futures', $data);
+    // }
+    
+    
+//     public function futures($id)
+    // {
+//         $user = User::select();
+// // dd($user);
+//         return view('users.futures', $user);
+        
+    // }    
+        
+        
+        
+        // $users = DB::table('users')->get();
+
+        // return view('users.futures', ['users' => $users]);
+    
     
 }

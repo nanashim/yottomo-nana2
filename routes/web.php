@@ -42,6 +42,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('unzuttomo', 'UserFriendController@unzuttomo')->name('user.unzuttomo');
         Route::get('zuttomoings', 'UsersController@zuttomoings')->name('users.zuttomoings');
         
+        // future
+        Route::post('future', 'UserFriendController@future')->name('user.future');
+        Route::get('futures', 'UsersController@futures')->name('users.futures');
         
     });
     

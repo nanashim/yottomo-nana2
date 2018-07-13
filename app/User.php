@@ -5,6 +5,10 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Scope;
+use Illuminate\Database\Eloquent\Builder;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -141,5 +145,74 @@ class User extends Authenticatable
     public function is_zuttomoing($userId) {
         return $this->zuttomoings()->where('zuttomo_id', $userId)->exists();
     }
+    
+    
+    // 0712追記
+    public function futures()
+    {
+        // $futures = User::where('id','>=', 817)->get();
+        // return $this->where('id','<=', 1082)->where('codingteam', 'JETS');
+        // return $this->hasMany('App\User_friend')
+        
+        /////////// user_idから引っ張れるけど、userの情報が空っぽ////////////
+        // $query = User_friend::where('user_id', 832);
+        // return $query;
+        /////////////////////////////////////////////////////////////////
+        
+        // $futures = User_friend::select()
+        //             ->join('users','users.id','=','user_friend.friend_id')
+        //             ->get();
+        // return $futures;
+        
+        //////////////////////////////////////////////////////////////////////////////////////
+        // $its_me = $this->id;
+        
+        // if ($its_me) {
+        //      $futures = User_friend::join('users','users.id','=','user_friend.friend_id')
+        //                 // ->select('user_friend.user_id');
+        //                 ->select()
+        //                 ->where('user_id', 831);
+        //     return $futures;
+        // } else {
+        //     // do nothing if not following
+        //     return false;
+        // }
+        //////////////////////////////////////////////////////////////////////////////////////
+        
+        // $futures = User_friend::join('users','users.id','=','user_friend.friend_id')
+        //             // ->select('user_friend.user_id');
+        //             ->select()
+        //             ->where('user_id', 831);
+        // return $futures;
+        
+        // return $this->belongsToMany(User::class, 'user_friend', 'user_id', 'friend_id')->withTimestamps();
+        // $futures = User::has('User_friend')->select();
+        
+        // if(\Auth::check()){
+            
+        // }
+        
+        return $this->belongsToMany(User::class, 'user_friend', 'friend_id', 'user_id');
+        
+        // $futures2 = $this->belongsToMany(User::class, 'user_friend', 'user_id', 'friend_id');
+        // return $futures2;
+        
+        // return $this->belongsTo(User_friend::class);
+    }
+    
+    public function future($userId){
+        $its_me = $this->id == $userId;
+        
+        if ($its_me) {
+             $futures = User_friend::join('users','users.id','=','user_friend.friend_id')
+                        ->select()
+                        ->where('user_id', $userId);
+            return $futures;
+        } else {
+            // do nothing if not following
+            return false;
+        }
+    }
+    
     
 }

@@ -7,7 +7,7 @@
         </div>
         <div class="media-body">
             <div>
-                {{ $user->name }} ({{ $user->hometeam }},{{ $user->codingteam }})
+                <b>{{ $user->name }}</b>【{{ $user->hometeam }}】【{{ $user->codingteam }}】
             </div>
             <div>
                 <p>私の趣味は、[{{ $user->hobby }}]で、チャームポイントは[{{ $user->charmpoint }}]なんだ。</p>
