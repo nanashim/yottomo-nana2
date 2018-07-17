@@ -23,6 +23,10 @@ class AddColumnToUsersTable extends Migration
             $table->string('dream')->nullable();
             $table->string('app')->nullable();
             $table->string('content')->nullable();
+            $table->string('ranktitle')->nullable();
+            $table->string('rank1')->nullable();
+            $table->string('rank2')->nullable();
+            $table->string('rank3')->nullable();
         });
     }
 
@@ -43,6 +47,10 @@ class AddColumnToUsersTable extends Migration
             $table->dropColumn('dream')->nullable(false);
             $table->dropColumn('app')->nullable(false);
             $table->dropColumn('content')->nullable(false);
+            $table->dropColumn('ranktitle')->nullable(false);
+            $table->dropColumn('rank1')->nullable(false);
+            $table->dropColumn('rank2')->nullable(false);
+            $table->dropColumn('rank3')->nullable(false);
         });
     }
 }
