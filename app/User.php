@@ -192,7 +192,7 @@ class User extends Authenticatable
             
         // }
         
-        return $this->belongsToMany(User::class, 'user_friend', 'friend_id', 'user_id');
+        return $this->belongsToMany(User::class, 'user_friend', 'friend_id', 'user_id')->withTimestamps();
         
         // $futures2 = $this->belongsToMany(User::class, 'user_friend', 'user_id', 'friend_id');
         // return $futures2;

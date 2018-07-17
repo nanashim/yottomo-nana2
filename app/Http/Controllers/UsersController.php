@@ -88,8 +88,25 @@ class UsersController extends Controller
     // future
     public function futures($id)
     {
+        // usersテーブルの中から、【Judy】を取得し、$userに格納
         $user = User::find($id);
+        // $userに格納された【Judy】をフレンドしている人たちを$futuresに格納→【Jet】と【Yuki】
         $futures = $user->futures()->paginate(10);
+        
+        // $userに格納された【Judy】がフレンドしている人たちを$friendsに格納→【Jet】
+        // $friends = $user->friends()->paginate(10);
+        //user_friendテーブルの中から、【Judy】がフレンドしている人たちを$hogeに格納→【Jet】(※でもuser_friendテーブルのデータ形式じゃ使えない)
+        // $hoge = User_friend::all()->where('user_id', '=', '$id');
+        
+        // $hogehoge = array_diff($futures, $friends);
+        // $key = array_search('id', $friends);
+        // $friendsのidと$futuresのuser_idが一致していれば取得したい
+        // $hogeのfriend_idと$futuresのuser_idが一致していれば取得したい
+        // $sougo = $futures->where('user_id', '=', '$friends['id']);
+        
+        
+        
+        // $futures = $user->futures()->where('friend_id', '=', $id)->get();
 
         $data = [
             'user' => $user,

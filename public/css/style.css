@@ -1,0 +1,41 @@
+@charset "utf-8";
+/*同期一覧 */
+.users .panel-body {
+    height: 200px;
+}
+
+/*.users .buttons form {*/
+/*    display: inline-block;*/
+/*    margin: 0 5px;*/
+/*}*/
+
+/*ぐらばたーの画像*/
+.users .panel-heading {
+    height: 100px;
+    position: relative;
+    top: 0.25em;
+}
+
+.users .panel-heading img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+p .users-title {
+    /* Keep the number of lines in a sentence on two lines, and add "..." to the end of line. */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+/*ぐらばたー*/
+/*.users .media-object .img-rounded {*/
+/*border-radius: 50%;*/
+/*-moz-border-radius: 50%;*/
+/*-webkit-border-radius: 50%;*/
+/*   height: 42px;*/
+/*    position: relative;*/
+/*    top: 0.25em;*/
+/*    width: 42px;*/
+/*}*/
