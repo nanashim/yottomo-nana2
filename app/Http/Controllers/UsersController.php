@@ -88,10 +88,79 @@ class UsersController extends Controller
     // future
     public function futures($id)
     {
-        // usersテーブルの中から、【Judy】を取得し、$userに格納
+        
+        // $me = User::select('id')->where('id', 16)->get();
+        
+        // foreach ($me as $ma) {
+        //     echo $ma->id;
+        // }
+        
+        // $user = User::find($id);
+        
+        // $me = User::select('id')->where('id', 16)->get();
+        // foreach ($me as $ma) {
+        //     return $ma->id;
+        // }
+        
         $user = User::find($id);
+        // $hogeは、自分をフォローしてくれている人たちが入っている
+        $hoge_a = User_friend::join('users','users.id','=','user_friend.user_id')
+                    ->select('users.*')
+                    ->where('friend_id',$id)
+                    ->pluck('id')
+                    ->toArray();
+                    // ->paginate(10);
+        
+        // $futuresは、自分がフォローしている人たちが入っている
+        $futures_a = User_friend::join('users','users.id','=','user_friend.friend_id')
+                    ->select('users.*')
+                    ->where('user_id',$id)
+                    ->pluck('id')
+                    ->toArray();
+                    // ->paginate(10);
+        
+        $sougo_id = array_intersect($futures_a, $hoge_a);
+        
+        $data = [];
+        
+        if($sougo_id){
+            
+                $futures = User::select()->whereIn('id', $sougo_id)->paginate(10);
+                
+                $data = [
+                    'user' => $user,
+                    'users' => $futures,
+                ];
+                
+                array_push($data, ['user' => $user], ['users' => $futures]);
+                // array_push($data['users'], ['key' => 'val']);
+                
+        
+                $data += $this->counts($user);
+        
+                
+            
+        }else{
+            $futures = null;
+             $data = [
+                    'user' => $user,
+                    'users' => $futures,
+                ];
+                
+                array_push($data, ['user' => $user], ['users' => $futures]);
+                // array_push($data['users'], ['key' => 'val']);
+                
+        
+                $data += $this->counts($user);
+        }    
+        return view('users.futures', $data);
+        // print_r($sougo_id);
+        // exit;
+        // var_dump($futures);
+        // usersテーブルの中から、【Judy】を取得し、$userに格納
+        // $user = User::find($id);
         // $userに格納された【Judy】をフレンドしている人たちを$futuresに格納→【Jet】と【Yuki】
-        $futures = $user->futures()->paginate(10);
+        // $futures = $user->futures()->paginate(10);
         
         // $userに格納された【Judy】がフレンドしている人たちを$friendsに格納→【Jet】
         // $friends = $user->friends()->paginate(10);
@@ -103,19 +172,13 @@ class UsersController extends Controller
         // $friendsのidと$futuresのuser_idが一致していれば取得したい
         // $hogeのfriend_idと$futuresのuser_idが一致していれば取得したい
         // $sougo = $futures->where('user_id', '=', '$friends['id']);
-        
-        
+                
+                
+                
         
         // $futures = $user->futures()->where('friend_id', '=', $id)->get();
 
-        $data = [
-            'user' => $user,
-            'users' => $futures,
-        ];
-
-        $data += $this->counts($user);
-
-        return view('users.futures', $data);
+        
     }
     
     // public function futures($id)

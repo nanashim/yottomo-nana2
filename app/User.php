@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Builder;
 
+use DB;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -179,25 +181,35 @@ class User extends Authenticatable
         // }
         //////////////////////////////////////////////////////////////////////////////////////
         
+        // $me = User::select('id')->where('id', 16)->get();
+        
+        // foreach ($me as $ma) {
+        //     echo $ma->id;
+        // }
+        
         // $futures = User_friend::join('users','users.id','=','user_friend.friend_id')
         //             // ->select('user_friend.user_id');
         //             ->select()
-        //             ->where('user_id', 831);
+        //             ->where('user_id', $ma->id);
         // return $futures;
         
         // return $this->belongsToMany(User::class, 'user_friend', 'user_id', 'friend_id')->withTimestamps();
         // $futures = User::has('User_friend')->select();
         
-        // if(\Auth::check()){
-            
-        // }
+        
+        // return DB::table('user_friend as friend_list')
+        //                     ->select('s1.user_id','s1.friend_id')
+        //                     ->join('user_friend as s1', 's1.user_id', '=', 's2.friend_id')
+        //                     ->join('user_friend as s2', 's1.friend_id', '=', 's1.user_id')
+        //                     ->get();
         
         return $this->belongsToMany(User::class, 'user_friend', 'friend_id', 'user_id')->withTimestamps();
+        // return $this->belongsToMany(User::class, 'user_zuttomo', 'zuttomo_id', 'user_id')->withTimestamps();
+        // $friender = $this->belongsToMany(User::class, 'user_friend', 'friend_id', 'user_id')->withTimestamps();
+        // $zuttomoer = $this->belongsToMany(User::class, 'user_zuttomo', 'zuttomo_id', 'user_id')->withTimestamps();
+        // $futurer = $friender + $zuttomoer;
+        // return $futurer;
         
-        // $futures2 = $this->belongsToMany(User::class, 'user_friend', 'user_id', 'friend_id');
-        // return $futures2;
-        
-        // return $this->belongsTo(User_friend::class);
     }
     
     public function future($userId){
